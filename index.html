@@ -4,13 +4,13 @@
     <title>Booking.com</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
+  <link href="/src/output.css" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<script src="index.js"></script>
 </head>
 <body class="font-sans">
     <!-- section-one -->
@@ -33,7 +33,7 @@
             <h1 class="font-bold text-3xl mb-8">More</h1>
             <ul class="list-none flex flex-col gap-10  text-black/80">
                 <li><a href="#" class=" flex text-black/80 hover:bg-black/10"> NGN Nigerian Naira</a></li>
-                <li class="flex"><a href="#" class="block hover:bg-black/10 p-2"><div class="h-5 w-5 rounded-full mr-3 bg-red-500"></div> English (UK)</a></li>
+                <li class="flex"><a href="#" class="flex hover:bg-black/10 p-2"><div class="h-5 w-5 rounded-full mr-3 bg-red-500"></div> English (UK)</a></li>
                 <li><a href="#" class="block hover:bg-black/10 p-2 items-center"><i class="fa-solid fa-globe mr-3"></i> Genius loyalty programme</a></li>
                 <li><a href="#" class="block hover:bg-black/10 p-2 items-center"><i class="fas fa-house-medical mr-3"></i> List your property</a></li>
                 <label for="help" class="text-black font-bold"> Help and support</label>
@@ -86,12 +86,41 @@
     <h1 class="font-bold text-2xl">Find your next stay</h1>
     <p>Search low prices on hotels, home and much more....</p>
  </div>
- <div>
-   <div class="p-8">
-    <div class="bg-amber-400 rounded-xl p-4">
-        <div class="bg-white"> </div>
+ <!-- search destination field -->
+  <div class="p-8" >
+ <div class="flex relative w-full md:max-w-5xl mx-auto p-1 bg-amber-500">
+    <div class="bg-white w-full p-3" id="destField" onclick="toggleDropdown()">
+        <i class="fas fa-bed field-text"></i>
+        <span class="field-text" id="destText">where are you going</span>
+
+        <!-- dropdown -->
+         <div id="dropdown" class="absolute dropdown bg-white p-5 z-50">
+           <div class=" mb-5" onclick="selectDestination('Around current location', event)"> <i class="fa-solid fa-location-arrow"></i> Around current location </div> 
+           <div class="font-bold"> Trending destinations</div>
+           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Lagos, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
+            <div class="flex flex-col"><span class="font-black"> Lagos</span>
+            <span>Nigeria</span>
+        </div> </div>
+           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('London, United Kingdom', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
+            <div class="flex flex-col"><span class="font-black"> London</span>
+            <span>United Kingdom</span>
+        </div> </div>
+           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100"  onclick="selectDestination('Abuja, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
+            <div class="flex flex-col"><span class="font-black"> Abuja</span>
+            <span>Nigeria</span>
+        </div> </div>
+           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Ikeja, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
+            <div class="flex flex-col"><span class="font-black"> Ikeja</span>
+            <span>Nigeria</span>
+        </div> </div>
+           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Paris, France', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
+            <div class="flex flex-col"><span class="font-black"> Paris</span>
+            <span>France</span>
+        </div> </div>
+         </div>
     </div>
    </div> 
+   </div>
  </div>
 </body>
 </html>

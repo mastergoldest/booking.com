@@ -88,19 +88,26 @@ input:checked ~ .Slid{
     color: black;
     transform: translateX(-100%);
     transition: 0.5s ease;
-/* }
-.Slid{
-    position: absolute;
-    z-index: 15;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: white;
-    color: black;
-    transform: translateX(-100%);
-    transition: 0.5s ease;
-} */
+ }
 .locate{
     scrollbar-width: none;
+}
+.field-text{
+    font-size: 14px;
+    color: #6b7280;
+overflow: hidden;
+text-overflow: ellipsis;
+user-select: none;
+}
+.field-text.active{
+    color: black;
+}
+.dropdown{
+    width: 380px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+    left: 0;
+    bottom: -450px;
+    border-radius: 4px;
+    display: none;
 }
