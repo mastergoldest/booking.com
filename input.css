@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 
+@import "tailwindcss";
+
 @theme {
-    --font-sans: -apple-system, BlinkMacSystemFont, "segoe UI", Roboto, Helvetical, Arial, sans-serif;
+  /* Custom Fonts */
+  --font-sans: "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif";
+
+  /* Custom Colors */
+  --color-booking-blue: #003580;
+  --color-booking-midblue: #0071c2;
+  --color-booking-darkbg: #00254c;
+  --color-booking-orange: #f5a623;
+  --color-booking-orange-btn: #f5a623;
 }
 
 input[type="checkbox"]{
@@ -12,13 +22,14 @@ input[type="checkbox"]{
 }
 .toggle{
     position: absolute ;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     z-index: 21;
     cursor: pointer;
     right: 0;
     top: 25px;
     margin-right: 10px;
+    
 }
 .togg{
     position: absolute ;
@@ -110,4 +121,22 @@ user-select: none;
     bottom: -450px;
     border-radius: 4px;
     display: none;
+}
+.paragraph{
+opacity: 0;
+
+}
+.paragr:hover ~ .paragraph{
+    opacity: 1;
+    animation: slideIn 2s ease-out;
+}
+@keyframes slideIn {
+   from {
+    transform: translatey(-100);
+    opacity: 0;
+   } 
+   to{
+    transform: translatey(0);
+    opacity: 1;
+   }
 }

@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+ <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="/favicon_io/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="index.js"></script>
+<link rel="stylesheet" href="/input.css">
 </head>
 <body class="font-sans">
     <!-- section-one -->
@@ -24,7 +26,7 @@
             <!-- hamburger menu -->
         <label>
             <input type="checkbox">
-          <div class="toggle">
+          <div class="toggle hover:bg-black/10">
             <span class="Top-line common"></span>
             <span class="Middle-line common"></span>
             <span class="Bottom-line common"></span>
@@ -87,40 +89,424 @@
     <p>Search low prices on hotels, home and much more....</p>
  </div>
  <!-- search destination field -->
-  <div class="p-8" >
- <div class="flex relative w-full md:max-w-5xl mx-auto p-1 bg-amber-500">
-    <div class="bg-white w-full p-3" id="destField" onclick="toggleDropdown()">
-        <i class="fas fa-bed field-text"></i>
-        <span class="field-text" id="destText">where are you going</span>
+  <div class="px-30">
+    <div class="mt-20 flex flex-col md:flex-row items-stretch w-full max-w-5xl mx-auto border-[3px] border-[#f5a623] rounded bg-white relative ">
 
-        <!-- dropdown -->
-         <div id="dropdown" class="absolute dropdown bg-white p-5 z-50">
-           <div class=" mb-5" onclick="selectDestination('Around current location', event)"> <i class="fa-solid fa-location-arrow"></i> Around current location </div> 
-           <div class="font-bold"> Trending destinations</div>
-           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Lagos, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
-            <div class="flex flex-col"><span class="font-black"> Lagos</span>
-            <span>Nigeria</span>
-        </div> </div>
-           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('London, United Kingdom', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
-            <div class="flex flex-col"><span class="font-black"> London</span>
-            <span>United Kingdom</span>
-        </div> </div>
-           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100"  onclick="selectDestination('Abuja, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
-            <div class="flex flex-col"><span class="font-black"> Abuja</span>
-            <span>Nigeria</span>
-        </div> </div>
-           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Ikeja, Nigeria', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
-            <div class="flex flex-col"><span class="font-black"> Ikeja</span>
-            <span>Nigeria</span>
-        </div> </div>
-           <div class=" mt-5 flex w-full items-center  hover:bg-amber-100" onclick="selectDestination('Paris, France', event)"> <div> <i class="fa-solid fa-location-dot text-xl mr-3"></i></div> 
-            <div class="flex flex-col"><span class="font-black"> Paris</span>
-            <span>France</span>
-        </div> </div>
-         </div>
+    <!-- ── FIELD 1 : Where are you going? ── -->
+    <div class="relative flex-1 flex items-center gap-3 px-4 border-r border-gray-200 cursor-text"
+         id="destWrapper">
+
+      <!-- bed icon -->
+      <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M3 7v10M3 12h18M21 7v10M6 12V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/>
+      </svg>
+
+      <input
+        id="destInput"
+        type="text"
+        placeholder="Where are you going?"
+        autocomplete="off"
+        class="w-full h-12 bg-transparent outline-none text-sm text-gray-800 placeholder-gray-500 cursor-pointer"
+        onfocus="openDropdown()"
+        oninput="openDropdown()"
+      />
+
+      <!-- ── DESTINATION DROPDOWN ── -->
+      <div id="destDropdown"
+           class="hidden absolute top-[52px] left-0 w-96 bg-white rounded shadow-2xl z-50 py-2">
+
+        <!-- Around current location -->
+        <div class="flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-gray-100"
+             onclick="pickDest('Around current location', '')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+            </svg>
+          </div>
+          <span class="text-sm font-semibold text-gray-800">Around current location</span>
+        </div>
+
+        <hr class="my-1 border-gray-200"/>
+
+        <p class="px-5 pt-2 pb-1 text-xs font-bold uppercase tracking-widest text-gray-700">
+          Trending destinations
+        </p>
+
+        <!-- Destination rows -->
+        <div class="flex items-center gap-4 px-5 py-2.5 cursor-pointer hover:bg-gray-100" onclick="pickDest('Lagos','Nigeria')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div><p class="text-sm font-semibold text-gray-800">Lagos</p><p class="text-xs text-gray-500">Nigeria</p></div>
+        </div>
+
+        <div class="flex items-center gap-4 px-5 py-2.5 cursor-pointer hover:bg-gray-100" onclick="pickDest('London','United Kingdom')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div><p class="text-sm font-semibold text-gray-800">London</p><p class="text-xs text-gray-500">United Kingdom</p></div>
+        </div>
+
+        <div class="flex items-center gap-4 px-5 py-2.5 cursor-pointer hover:bg-gray-100" onclick="pickDest('Abuja','Nigeria')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div><p class="text-sm font-semibold text-gray-800">Abuja</p><p class="text-xs text-gray-500">Nigeria</p></div>
+        </div>
+
+        <div class="flex items-center gap-4 px-5 py-2.5 cursor-pointer hover:bg-gray-100" onclick="pickDest('Ikeja','Nigeria')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div><p class="text-sm font-semibold text-gray-800">Ikeja</p><p class="text-xs text-gray-500">Nigeria</p></div>
+        </div>
+
+        <div class="flex items-center gap-4 px-5 py-2.5 cursor-pointer hover:bg-gray-100" onclick="pickDest('Paris','France')">
+          <div class="w-9 h-9 bg-gray-100 rounded flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div><p class="text-sm font-semibold text-gray-800">Paris</p><p class="text-xs text-gray-500">France</p></div>
+        </div>
+
+      </div><!-- /destDropdown -->
+    </div><!-- /field 1 -->
+
+
+    <!-- ── FIELD 2 : Check-in / Check-out ── -->
+    <div class="flex items-center gap-3 px-4 border-r border-gray-200 cursor-pointer w-60 shrink-0"
+         onclick="toggleDatePicker()">
+
+      <!-- calendar icon -->
+      <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+
+      <span id="dateLabel" class="text-sm text-gray-500 whitespace-nowrap select-none">
+        Check-in date &nbsp;—&nbsp; Check-out date
+      </span>
+
+      <!-- hidden date inputs (shown on click) -->
+      <div id="datePicker" class="hidden absolute top-[52px] left-[calc(33%)] z-50 bg-white shadow-2xl rounded p-4 flex gap-3">
+        <div>
+          <label class="text-xs text-gray-500 font-semibold block mb-1">Check-in</label>
+          <input type="date" id="checkin" onchange="updateDateLabel()"
+                 class="border border-gray-300 rounded px-2 py-1.5 text-sm outline-none focus:border-blue-500 cursor-pointer"/>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 font-semibold block mb-1">Check-out</label>
+          <input type="date" id="checkout" onchange="updateDateLabel()"
+                 class="border border-gray-300 rounded px-2 py-1.5 text-sm outline-none focus:border-blue-500 cursor-pointer"/>
+        </div>
+      </div>
+    </div><!-- /field 2 -->
+    <!-- ── FIELD 3 : Adults · Children · Rooms ── -->
+    <div class="relative flex items-center gap-2 px-4 cursor-pointer w-56 shrink-0"
+         id="guestsWrapper"
+         onclick="toggleGuests(event)">
+      <!-- person icon -->
+      <svg class="w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span id="guestsLabel" class="text-sm text-gray-700 whitespace-nowrap select-none flex-1">
+        2 adults · 0 children · 1 room
+      </span>
+      <!-- chevron -->
+      <svg class="w-4 h-4 text-gray-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+      <!-- ── GUESTS DROPDOWN ── -->
+      <div id="guestsDropdown"
+           class="hidden absolute top-[52px] right-0 w-72 bg-white shadow-2xl rounded z-50 p-4"
+           onclick="event.stopPropagation()">
+        <!-- Adults -->
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <div>
+            <p class="text-sm font-semibold text-gray-800">Adults</p>
+            <p class="text-xs text-gray-500">Age 18+</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="chg('adults',-1)" id="adultsMinus"
+              class="w-8 h-8 rounded-full border border-[#0071c2] text-[#0071c2] text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white transition disabled:border-gray-300 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-300">−</button>
+            <span id="adultsVal" class="text-sm font-semibold w-4 text-center">2</span>
+            <button onclick="chg('adults',1)"
+              class="w-8 h-8 rounded-full border border-[#0071c2] text-[#0071c2] text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white transition">+</button>
+          </div>
+        </div>
+
+        <!-- Children -->
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <div>
+            <p class="text-sm font-semibold text-gray-800">Children</p>
+            <p class="text-xs text-gray-500">Age 0–17</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="chg('children',-1)" id="childrenMinus" disabled
+              class="w-8 h-8 rounded-full border border-gray-300 text-gray-300 text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white hover:border-[#0071c2] transition disabled:border-gray-300 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-300 disabled:hover:border-gray-300">−</button>
+            <span id="childrenVal" class="text-sm font-semibold w-4 text-center">0</span>
+            <button onclick="chg('children',1)"
+              class="w-8 h-8 rounded-full border border-[#0071c2] text-[#0071c2] text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white transition">+</button>
+          </div>
+        </div>
+        <!-- Rooms -->
+        <div class="flex items-center justify-between py-3">
+          <div>
+            <p class="text-sm font-semibold text-gray-800">Rooms</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="chg('rooms',-1)" id="roomsMinus" disabled
+              class="w-8 h-8 rounded-full border border-gray-300 text-gray-300 text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white hover:border-[#0071c2] transition disabled:border-gray-300 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-300 disabled:hover:border-gray-300">−</button>
+            <span id="roomsVal" class="text-sm font-semibold w-4 text-center">1</span>
+            <button onclick="chg('rooms',1)"
+              class="w-8 h-8 rounded-full border border-[#0071c2] text-[#0071c2] text-lg flex items-center justify-center hover:bg-[#0071c2] hover:text-white transition">+</button>
+          </div>
+        </div>
+      </div><!-- /guestsDropdown -->
+    </div><!-- /field 3 -->
+    <!-- ── SEARCH BUTTON ── -->
+    <button class="bg-[#0071c2] hover:bg-[#005fa3] text-white font-bold text-sm px-6 rounded-r transition shrink-0">
+      Search
+    </button>
+  </div><!-- /search-bar -->
+  </div>
+  <div class="mt-8 px-4 md:max-w-5xl mx-auto md:flex flex-col ">
+    <label class="font-bold text-2xl"> Offers</label>
+    <p class="text-black/50 pt-3 pb-8">promotions, deas and special offers for you</p>
+    <div class="flex max-w-5xl gap-5 mb-10 overflow-x-scroll locate">
+        <div class=" border flex border-black/30 p-4 rounded-xl items-center justify-center shrink-0">
+            <div class="pr-5">
+            <p class="text-xs text-black/60">Early 2026 Deals</p>
+            <h1 class="text-2xl font-bold"> At least 15% off</h1>
+            <p class="text-xs text-black/60"> Save on your stay with Early 2026 Deals. Book now, stay until 1 April 2026.</p>
+            <button class="p-3 text-white bg-blue-800 rounded-[5px] mt-3 ">Explore deals</button></div>
+            <div>
+            <img src="/image/images (8).jpg" alt="cup" class=" object-cover w-[160px]  h-[140px]  "> </div>
+        </div>
+        <div class="border flex border-black/30 p-4 rounded-xl items-center justify-center shrink-0">
+            <div class="pr-5">
+            <p class="text-xs text-black/60">Escape for less with our Gateway Deals</p>
+            <h1 class="text-2xl font-bold">No catch. just gateways</h1>
+            <p class="text-xs text-black/60"> At least 15% off select stays worldwide - jus book and go</p>
+            <button class="p-3 text-white bg-blue-800 rounded-[5px] mt-3 text-nowrap">Save with a Gateway Deal</button></div>
+            <div>
+            <img src="/image/images (8).jpg" alt="cup" class=" object-cover w-[160px]  h-[140px] shrink-0 rounded-r-xl "> </div>
+        </div>
     </div>
-   </div> 
-   </div>
- </div>
+  </div>
+  <!-- guest section -->
+   <sectionc class="">
+    <div class="md:max-w-5xl mx-auto p-5">
+       <label class="font-bold text-2xl"> Homes guest love</label>
+       <div class="flex gap-3 overflow-x-scroll locate">
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (1).jpg" alt="man">
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (2).jpg" alt="man" class="min-h-[194px] max-w-[259px]">
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (3).jpg" alt="man"
+            class="min-h-[194px] max-w-[259px]">
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (1).jpg" alt="man">
+            
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (1).jpg" alt="man">
+            
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (12).jpg" alt="man"
+            >
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (11).jpg" alt="man"
+            >
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+        <a href="#" class=" mt-5 rounded-xl overflow-hidden shadow-2xl shrink-0">
+            <div class="relative">
+            <button class="paragr h-10 w-10 rounded-full bg-white absolute left-[200px] mt-4 -right-3 flex items-center justify-center"> <i class="fa-solid fa-heart hover:text-red-600"></i></button>
+                <p class="paragraph absolute bg-black text-white p-1 rounded-xs top-20 left-[150px] ">Save this item</p>
+        </div>
+            <img src="/image/download (10).jpg" alt="man"
+            >
+            <div class="p-2">
+                 <p class="text-xs text-black/60 ">Early 2026 Deals <i class="fa-solid fa-thumbs-up text-blue-800"></i> <span class="bg-blue-800 text-white rounded-xs">Genuis</span></p>
+                 <h1 class="text-xl font-bold">Jotani Living</h1>
+                   <label class="font-bold text-xs text-black/60"> Lagos, Nigeria</label>
+                <div class="flex mb-2">
+                    <p class="p-1 text-white bg-blue-800 rounded-tl-[3px] rounded-tr-[3px] rounded-br-[3px] mr-2">8.3</p>
+                    <p class="text-black/60 text-xs">Very good <br> <span>221 reviews</span></p>
+                </div>
+                <p class=" text-black/60 "><i class="fa-solid fa-location-dot text-black/60 mr-3"></i>14.7 km from centre</p>
+                </div>
+                <div class="flex flex-row-reverse pr-3">
+                    <p class=" text-black/60 "> starting from</p></div> 
+                    <div class="flex flex-row-reverse pr-3">
+                        <div class="flex">
+                    <p class="text-red-500 line-through"> NGN 90,000 <p class="font-bold text-black">NGN 77,400</p></div>
+                </div>
+        </a>
+
+       </div>
+    </div>
+   </section>
 </body>
 </html>
