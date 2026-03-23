@@ -75,29 +75,27 @@ body{
     transform: translate(-50%,-50%);
 }
 input:checked ~ .toggle .Top-line{
-    left: 2px;
-    top: 14px;
-    width: 25px;
+
+    top: 20px;
+    width: 30px;
     transform: rotate(45deg);
      background-color: black;
-     position: fixed;
-       margin-top: 30px;
-       margin-left: 550px;
+   
+    
 }
 input:checked ~ .toggle .Middle-line{
    opacity: 0;
     transform: rotate(45deg);
 }
 input:checked ~ .toggle .Bottom-line{
-    left: 2px;
-    top: 14px;
+  
+    top: 20px;
     right: 0;
-    width: 25px;
+    width: 30px;
     transform: rotate(-45deg);
     background-color: black;
-    position: fixed;
-    margin-top: 30px;
-    margin-left: 550px;
+  
+
   
 
 }
