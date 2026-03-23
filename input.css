@@ -80,6 +80,9 @@ input:checked ~ .toggle .Top-line{
     width: 25px;
     transform: rotate(45deg);
      background-color: black;
+     position: fixed;
+       margin-top: 30px;
+       margin-left: 550px;
 }
 input:checked ~ .toggle .Middle-line{
    opacity: 0;
@@ -88,9 +91,14 @@ input:checked ~ .toggle .Middle-line{
 input:checked ~ .toggle .Bottom-line{
     left: 2px;
     top: 14px;
+    right: 0;
     width: 25px;
     transform: rotate(-45deg);
     background-color: black;
+    position: fixed;
+    margin-top: 30px;
+    margin-left: 550px;
+  
 
 }
 input:checked ~ .Slide{
@@ -100,7 +108,7 @@ input:checked ~ .Slid{
     transform: translateX(0);
 }
 .Slide{
-    position: absolute;
+    position: fixed;
     z-index: 15;
     height: 100%;
     width: 100%;
@@ -110,6 +118,7 @@ input:checked ~ .Slid{
     color: black;
     transform: translateX(-100%);
     transition: 0.5s ease;
+    overflow-y: scroll;
  }
 .locate{
     scrollbar-width: none;
