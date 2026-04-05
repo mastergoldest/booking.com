@@ -1,3 +1,21 @@
+const inputText = document.getElementById('destInput');
+const card1 = document.getElementById('overallcon');
+inputText.addEventListener('click', () => {
+  card1.classList.remove('card-hidden');
+
+  window.addEventListener('click', (e) => {
+    if (e.target !== inputText && ! card1.contains(e.target))
+    {card1.classList.add('card-hidden');
+
+    }
+  })
+});
+
+
+
+
+
+
 
   let isOpen = true;
 
