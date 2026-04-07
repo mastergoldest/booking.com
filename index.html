@@ -88,15 +88,16 @@
     <p>Search low prices on hotels, home and much more....</p>
  </div>
   <!-- where are you going bex -->
-  <div class="md:max-w-5xl p-7 mx-auto md:p-5 md:-mt-10 ">
-    <div class="bg-amber-400 gap-1 p-1 flex flex-col md:flex-row md:justify-between rounded-[8px]">
-      <div  id="destWrapper" class="bg-white py-4 md:w-[322px] rounded-[5px] flex items-center relative"><i class="fa-solid fa-bed  text-black/50 mx-3"></i>
+  <div class="md:max-w-5xl p-7 mx-auto md:p-5 md:-mt-10 shrink-0">
+    <div class="bg-amber-400 gap-1 p-1 flex flex-col md:flex-row rounded-[8px] items-stretch shrink-0 justify-between">
+      <div class="md:flex gap-1 w-full">
+      <div  id="destWrapper" class="bg-white py-4 md:min-w-[100px] rounded-[5px] flex items-center relative flex-1 mb-1 md:mb-0"><i class="fa-solid fa-bed  text-black/50 mx-3"></i>
       <input id="destInput" type="text"
       placeholder="where are you going"
       class="outline-none w-full "
        >
            <!-- Around current location -->
-        <div id="overallcon" class="absolute mt-[435px] bg-white w-[400px] hover:shadow-2xl card-hidden">
+        <div id="overallcon" class="absolute mt-[435px] bg-white w-[250px] md:w-[400px] hover:shadow-2xl card-hidden">
        
         <div id="destDropdown" class="flex items-center gap-4 px-5 py-3 cursor-pointer hover:bg-gray-100 "
              onclick="pickDest('Around current location', '')">
@@ -166,9 +167,40 @@
         </div>
         </div>
       </div>
-      <div class="bg-white py-4 md:w-[322px] rounded-[5px]">where are you going</div>
-      <div class="bg-white py-4 md:w-[322px] rounded-[5px]">where are you going</div>
-      <div class="bg-blue-700 py-4 md:w-[200px] justify-center flex rounded-[5px]"><button class="">Search</button></div>
+      <div class="bg-white py-4 md:min-w-[100px] rounded-[5px] flex  px-2 overflow-hidden items-center mb-1 md:mb-0">
+          <div><input type="text" placeholder="check-in-date" onfocus="[this.type='date']" onblur="if(!this.value)this.type='text'" class="text-[.9rem] w-[100px] outline-none bg-transparent"></div>
+          <span class="px-2">-</span>
+          <div><input type="text" placeholder="check-out-date" onfocus="[this.type='date']" onblur="if(!this.value)this.type='text'" class="text-[.9rem] outline-none bg-transparent"></div>
+      </div>
+      <div class="bg-white py-4 md:min-w-[100px] shrink-0 rounded-[5px] mb-1 md:mb-0 items-center flex  px-1"><div class="flex items-center">
+        <i class="fa-solid fa-user mr-2"></i>
+        <div >
+          <span id="people1"> <A></A>dult .</span>
+          <span id="people2"> Children .</span>
+          <span id="people3"> Room </span>
+          <div class="absolute bg-white shadow-2xl w-[250px] md:w-[400px] right-80 md:mt-[40px] mt-[10px] pb-10 shadow-xl rounded-[10px]">
+            <div class="flex justify-between px-2 - items-center">
+              <p>Adults</p>
+              <div class="flex items-center border py-1 px-5 rounded-xs border-black/50"><button 
+                onclick="adultdecr()" class="font-bold text-3xl text-blue-700/70 leading[32px] mr-4">-</button> <span id="peoplepe" class="leading[32px] text-[1rem]"></span><button onclick="adulticr()" class="leading[32px] font-bold text-2xl text-blue-700/70 ml-4">+</button></div>
+            </div>
+             <div class="flex justify-between px-2 py-10 items-center">
+              <p>Children</p>
+              <div class="flex items-center border py-1 px-5 rounded-xs border-black/50"><button 
+                onclick="childdecr()" class="font-bold text-3xl text-blue-700/70 leading[32px] mr-4">-</button> 
+                <span id="peoplepo" class="leading[32px] text-[1rem]"></span><button onclick="childicr()" class="leading[32px] font-bold text-2xl text-blue-700/70 ml-4">+</button></div>
+          </div>
+           <div class="flex justify-between px-2 pb-3 items-center">
+              <p>Rooms</p>
+              <div class="flex items-center border py-1 px-5 rounded-xs border-black/50"><button 
+                onclick="roomdecr()" class="font-bold text-3xl text-blue-700/70 leading[32px] mr-4">-</button> 
+                <span id="peoplee" class="leading[32px] text-[1rem]"></span><button onclick="roomdicr()" class="leading[32px] font-bold text-2xl text-blue-700/70 ml-4">+</button></div>
+          </div>
+          <div class="flex items-center justify-center">
+          <hr class="w-[350px] my-1"></div>
+        </div>
+      </div></div> </div>
+      <div class="hover:bg-[#0057B8] bg-blue-700 md:w-[140px] py-4 justify-center flex rounded-[5px]"><button class=" font-bold text-xl leading-[32px] text-white">Search</button></div>
     </div>
   </div>
   <div class="mt-8 px-4 md:max-w-5xl mx-auto md:flex flex-col ">
