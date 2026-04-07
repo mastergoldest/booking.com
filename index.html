@@ -24,7 +24,7 @@
         <div>
             <!-- hamburger menu -->
         <label>
-            <input type="checkbox">
+            <input type="checkbox" class="tog">
           <div class="toggle">
             <span class="Top-line common"></span>
             <span class="Middle-line common"></span>
@@ -172,13 +172,14 @@
           <span class="px-2">-</span>
           <div><input type="text" placeholder="check-out-date" onfocus="[this.type='date']" onblur="if(!this.value)this.type='text'" class="text-[.9rem] outline-none bg-transparent"></div>
       </div>
-      <div class="bg-white py-4 md:min-w-[100px] shrink-0 rounded-[5px] mb-1 md:mb-0 items-center flex  px-1"><div class="flex items-center">
+      <div class="bg-white py-4 md:min-w-[100px] shrink-0 rounded-[5px] mb-1 md:mb-0 items-center flex justify-between px-1">
+        <div class="flex items-center justify-between">
         <i class="fa-solid fa-user mr-2"></i>
         <div >
           <span id="people1"> <A></A>dult .</span>
           <span id="people2"> Children .</span>
           <span id="people3"> Room </span>
-          <div class="absolute bg-white shadow-2xl w-[250px] md:w-[400px] right-80 md:mt-[40px] mt-[10px] pb-10 shadow-xl rounded-[10px]">
+          <div class="absolute bg-white shadow-2xl w-[310px]  md:w-[450px] md:right-80 md:mt-[40px] mt-[10px] pb-10 px-5 shadow-xl rounded-[10px]">
             <div class="flex justify-between px-2 - items-center">
               <p>Adults</p>
               <div class="flex items-center border py-1 px-5 rounded-xs border-black/50"><button 
@@ -197,9 +198,25 @@
                 <span id="peoplee" class="leading[32px] text-[1rem]"></span><button onclick="roomdicr()" class="leading[32px] font-bold text-2xl text-blue-700/70 ml-4">+</button></div>
           </div>
           <div class="flex items-center justify-center">
-          <hr class="w-[350px] my-1"></div>
+          <hr class="md:w-[350px] w-[250px] my-1"></div>
+          <div class="flex justify-between p-1">
+            <p>Travelling with pets?</p>
+          <div>
+            <label class="items-center relative cursor-pointer inline-flex relative">
+              <input type="checkbox" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-300 rounded-full transition-colors
+              peer-checked:bg-blue-600
+              after:content-[''] after:absolute after:top-[2px] after:bg-white after:rounded-fill after:h-5 after:w-5
+              after:transition-all peer-checked:after:transition-x-full"></div>
+            </label>
+          </div>
+          </div>
         </div>
-      </div></div> </div>
+      </div>
+      
+    </div> 
+     <div><i class="fa-solid fa-chevron-down text-xs"></i></div>
+  </div>
       <div class="hover:bg-[#0057B8] bg-blue-700 md:w-[140px] py-4 justify-center flex rounded-[5px]"><button class=" font-bold text-xl leading-[32px] text-white">Search</button></div>
     </div>
   </div>
