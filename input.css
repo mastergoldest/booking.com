@@ -19,14 +19,14 @@ body{
     background-color:#003b95;
    
 }
-/* @keyframes fadeIn{
+@keyframes fadeIn{
     0%{
       opacity: 0;  
     }
     100%{
       opacity: 1;  
     }
-} */
+}
 .toggle{
     position: absolute ;
     height: 40px;
