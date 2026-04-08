@@ -1,11 +1,15 @@
 const inputText = document.getElementById('destInput');
 const card1 = document.getElementById('overallcon');
+const coverUp = document.getElementById('coverup')
+const conT =  document.getElementById("contain")
 let adultIcr = document.getElementById("people1")
 let adultIcre = document.getElementById("peoplepe")
 let childDecre = document.getElementById("people2")
 let childDecr = document.getElementById("peoplepo")
 let rooM = document.getElementById("peoplee")
 let roomDecre = document.getElementById("people3")
+
+
 
 let count = 0
 inputText.addEventListener('click', () => {
@@ -17,6 +21,10 @@ inputText.addEventListener('click', () => {
 
     }
   })
+});
+
+coverUp.addEventListener('click', () => {
+  conT.classList.remove('den');
 });
 function adulticr(){
   if( count < 30) {
@@ -60,6 +68,20 @@ function roomdicr(){
     rooM.textContent = count
   }
 }
+
+function pets(){
+  let petS = document.getElementById("people4")
+const checkbox = document.getElementById('petToggle')
+  if( checkbox.checked){
+    petS.textContent = "Pets .";
+  } else{
+    petS.textContent = "" ;
+  }
+}
+function done(){
+conT.classList.add('hidden')
+}
+
 
 
 

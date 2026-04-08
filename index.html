@@ -172,14 +172,15 @@
           <span class="px-2">-</span>
           <div><input type="text" placeholder="check-out-date" onfocus="[this.type='date']" onblur="if(!this.value)this.type='text'" class="text-[.9rem] outline-none bg-transparent"></div>
       </div>
-      <div class="bg-white py-4 md:min-w-[100px] shrink-0 rounded-[5px] mb-1 md:mb-0 items-center flex justify-between px-1">
+      <div id="coverup" class="bg-white py-4 md:min-w-[100px] shrink-0 rounded-[5px] mb-1 md:mb-0 items-center flex justify-between px-1">
         <div class="flex items-center justify-between">
         <i class="fa-solid fa-user mr-2"></i>
         <div >
           <span id="people1"> <A></A>dult .</span>
           <span id="people2"> Children .</span>
+          <span id="people4"> </span>
           <span id="people3"> Room </span>
-          <div class="absolute bg-white shadow-2xl w-[310px]  md:w-[450px] md:right-80 md:mt-[40px] mt-[10px] pb-10 px-5 shadow-xl rounded-[10px]">
+          <div id="contain" class="absolute bg-white shadow-2xl w-[310px]  md:w-[550px] md:right-80 md:mt-[40px] mt-[10px] pb-10 px-5 shadow-xl rounded-[10px] den">
             <div class="flex justify-between px-2 - items-center">
               <p>Adults</p>
               <div class="flex items-center border py-1 px-5 rounded-xs border-black/50"><button 
@@ -199,18 +200,19 @@
           </div>
           <div class="flex items-center justify-center">
           <hr class="md:w-[350px] w-[250px] my-1"></div>
-          <div class="flex justify-between p-1">
-            <p>Travelling with pets?</p>
           <div>
-            <label class="items-center relative cursor-pointer inline-flex relative">
-              <input type="checkbox" class="sr-only peer">
-              <div class="w-11 h-6 bg-gray-300 rounded-full transition-colors
-              peer-checked:bg-blue-600
-              after:content-[''] after:absolute after:top-[2px] after:bg-white after:rounded-fill after:h-5 after:w-5
-              after:transition-all peer-checked:after:transition-x-full"></div>
+            <label onclick="pets()" class="items-center flex cursor-pointer justify-between p-1 ">
+              <span>Travelling with pets?</span>
+              <div class="relative">
+              <input  id="petToggle" type="checkbox" class="hidden peer">
+              <div class="w-10 h-6 bg-gray-500 rounded-full 
+              peer-checked:bg-blue-600 transition-colors duration-300 "></div>
+            <div class="absolute top-1.5 left-1 w-3 h-3 bg-white shadow rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div></div>
             </label>
           </div>
-          </div>
+          <p class="text-[.8rem] mb-4">Assistance animals aren't pets, <span><a href="#" class="text-blue-600 ml-4"> Read more about travelling with assistance animals</a></span> </p>
+          <button onclick="done()" class="w-full border rounded-[5px] border-blue-500 
+          font-bold text-blue-600 leading-[32px ] py-2">Done</button>
         </div>
       </div>
       
